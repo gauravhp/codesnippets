@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+# to check number of arguments
+if [ $# -eq 0 ]
+ then
+    echo "Please enter Argument"
+fi

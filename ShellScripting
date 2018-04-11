@@ -1,8 +1,16 @@
 #!/bin/sh
 
+### ALL FUNTIONS DEFINED HERE
+
 
 # to check number of arguments
 if [ $# -eq 0 ]
  then
     echo "Please enter Argument"
+    exit 0
 fi
+
+
+
+
+###  MAIN ROUTINE

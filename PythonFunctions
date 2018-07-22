@@ -1,0 +1,5 @@
+def search(text,n):
+    '''Searches for text, and retrieves n words either side of the text, which are retuned seperatly'''
+    word = r"\W*([\w]+)"
+    groups = re.search(r'{}\W*{}{}'.format(word*n,'place',word*n), text).groups()
+    return groups[:n],groups[n:]

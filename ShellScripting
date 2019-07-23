@@ -12,5 +12,9 @@ fi
 
 
 
+### TO grep for a pattern within folder depth
+
+find . -maxdepth 2 -name '<filename>' | grep <inclusions or exclusions> | xargs grep "<pattern to look for>"
+
 
 ###  MAIN ROUTINE

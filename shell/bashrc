@@ -1,0 +1,67 @@
+################### For MAC  ############################
+
+alias ant6='ant -Dant.build.javac.target=1.6 -Dant.build.javac.source=1.6 clean package'
+alias copy='function _copy(){ scp $1 gaparmar@slc15dvo.us.oracle.com:/scratch/gaparmar/copiedFiles; };_copy'
+
+export PATH=$PATH:/opt/gradle/gradle-5.1.1/bin
+
+# JAVA HOMES : /Library/Java/JavaVirtualMachines/
+
+################### For ORACLE NETWORK (python)  ############################
+#export HTTP_PROXY=http://www-proxy-idc.in.oracle.com:80
+#export HTTPS_PROXY=http://www-proxy-idc.in.oracle.com:80
+#export no_proxy=localhost,127.0.0.1,.us.oracle.com,.oraclecorp.com
+
+# For BREW
+#export ALL_PROXY=http://www-proxy-idc.in.oracle.com:80
+
+######## GREP and HISTORY
+export GREP_OPTIONS="--color=auto"
+export HISTTIMEFORMAT="[%F %T] "
+
+#################### FOR PYENV ############################
+
+export PATH="/home/gaparmar/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+
+
+#################### FOR ARTIFACTORY ############################
+export ARTIFACTORY_HOME=/Users/gaparmar/Applications/artifactory
+#####################  DEFINE SHELL LOOK ###################
+git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
+START='[ '
+END='\e[m]:\n\$ '
+TIME='\e[0;31m\t '
+LOCATION='\e[0;32m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'
+BRANCH='\e[0;36m $(git_branch)'
+PS1=$START$TIME$LOCATION$BRANCH$END
+PS2='\[\033[01;36m\]>'
+
+#####################  DEFINE SHELL LOOK ###################
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+
+# General
+alias home='cd /home/gaparmar'
+alias tree="tree --dirsfirst";
+alias cls='clear';
+alias e='vim ~/.bashrc';
+alias .='source ~/.bashrc';
+alias l='ls -ltr';
+alias p='ps -e -o pid,args --forest';
+
+#Change Dir .. 2 is 2 levels up
+..() { if [ $1 -ge 0 2> /dev/null ]; then x=$1; else x=1; fi; for (( i = 0; i < $x; i++ )); do cd ..; done; }
+
+# To color man pages
+man() {
+        env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}

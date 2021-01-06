@@ -1,0 +1,97 @@
+# Set Env Variables
+#export KVHOME=<NO SQL Home>
+export LESS=$LESS" -S"
+export GREP_OPTIONS="--color=auto"
+export HISTTIMEFORMAT="[%F %T] "
+#export GRADLE_HOME="/opt/gradle/gradle-5.0/"
+#export ARTIFACTORY_HOME="<artifactory home>"
+#export http_proxy=<http proxy>:<port>
+#export https_proxy=<https proxy>:<port>
+#export no_proxy=localhost,127.0.0.1
+#export JAVA_HOME=<java home>
+#export ANT_HOME=<ant home>
+#################### FOR PYENV ############################
+
+export PATH="/home/gaparmar/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+#####################  DEFINE SHELL LOOK ###################
+git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
+START='[ '
+END='\e[m]:\n\$ '
+TIME='\e[0;31m\t '
+LOCATION='\e[0;32m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'
+BRANCH='\e[0;36m $(git_branch)'
+PS1=$START$TIME$LOCATION$BRANCH$END
+PS2='\[\033[01;36m\]>'
+
+##################### END DEFINE SHELL LOOK ###################
+
+#export M2_HOME=
+#export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+#export PATH=$PATH:/opt/gradle/gradle-5.0/bin/
+#export PATH=$PATH:<other paths>
+#export PATH=/opt/python3.3/bin/python3.3:$PATH 
+#for using integrate command
+export PATH="$PATH:/usr/local/packages/intg/bin"
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+export SHELL=/bin/bash
+
+# General
+alias hostname="hostname --long";
+alias tree="tree --dirsfirst";
+alias cls='clear';
+alias please='sudo !-1';
+alias e='vim ~/.bashrc';
+alias .='source ~/.bashrc';
+alias l='ls -ltr';
+alias p='ps -e -o pid,args --forest';
+alias less='less -I'
+alias removem='sed -e "s/^M//"'   # file > output_file
+# to pretty display a json file
+alias json='python -m json.tool'
+#alias kill45='ps -ef | grep 4500 | awk '"'"'{print $2}'"'"' | xargs kill -9';
+#alias gitfix='eval "$(ssh-agent -s)";sleep 30;ssh-add';
+#alias logcd='function _blah(){ cd /dir/$1/dir/dir/dir/$2/dir; };_blah'
+#alias rmcls='for i in `find . -name 'classes' -type d`; do rm -rf $i/*; done'
+
+# Java
+alias java6='echo "Setting JAVA_HOME to java 6"; export JAVA_HOME=<JAVA 6 home>;echo $JAVA_HOME; PATH=$PATH:<JAVA 6 home>/bin';
+alias java7='echo "Setting JAVA_HOME to java 7"; export JAVA_HOME=<JAVA 7 home>;echo $JAVA_HOME; PATH=$PATH:<JAVA 6 home>/bin';
+alias java8='echo "Setting JAVA_HOME to java 8"; export JAVA_HOME=<JAVA 8 home>;echo $JAVA_HOME; PATH=$PATH:<JAVA 6 home>/bin';
+alias J='echo $JAVA_HOME';
+
+alias remove='function _rem(){ find . -name $1 -exec rm -rf {} \;; }; _rem'
+
+#alias pinstall='function _tla(){ pip install $1 --proxy <PROXY>; }; _tla'
+
+# MAC
+alias scopy='function _cpy(){ scp $1 $2:/Users/gaparmar/slc15dvo; }; _cpy'
+
+#Change Dir .. 2 is 2 levels up
+..() { if [ $1 -ge 0 2> /dev/null ]; then x=$1; else x=1; fi; for (( i = 0; i < $x; i++ )); do cd ..; done; }
+
+# To color man pages
+man() {
+	env \
+	LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+	LESS_TERMCAP_md=$(printf "\e[1;31m") \
+	LESS_TERMCAP_me=$(printf "\e[0m") \
+	LESS_TERMCAP_se=$(printf "\e[0m") \
+	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+	LESS_TERMCAP_ue=$(printf "\e[0m") \
+	LESS_TERMCAP_us=$(printf "\e[1;32m") \
+	man "$@"
+}
+# To color man pages
+
+# To Count number of files in each SMC directory
+count() {
+	find . -maxdepth 3 -type d -exec sh -c "echo '{}'; ls -1 '{}' | wc -l" \; | xargs -n 2 | grep -v Ear |awk '{print $1" "$2}'
+}
+# To Count number of files in each SMC directory
+
+

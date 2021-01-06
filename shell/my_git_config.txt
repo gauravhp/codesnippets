@@ -1,0 +1,58 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Gaurav Parmar
+#	email = gaurav.p.parmar@oracle.com
+
+[alias]
+lol = log --graph --decorate --pretty=oneline --abbrev-commit
+lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+wdiff=diff --color-words
+st=status -sb
+cleanup = !git clean -i -x -d -e "TAGS" -e 'tags' ; git fetch -p
+differ = diff HEAD^ HEAD
+co = checkout # Checkout a branch
+cob = checkout -b # Checkout a new not yet existing branch
+f = fetch -p # Fetch from a repository and prune any remote-tracking references that no longer exist on the remote.
+p = pull
+c = commit # Commit you changes
+p = push # Push you changes to a remote
+ba = branch -a # List both remote-tracking branches and local branches.
+bd = branch -d # Delete a branch only if it has been merged
+bD = branch -D # Force delete a branch
+dc = diff --cached # Display the staged changes
+up = !git fetch origin && git rebase origin/master-dev
+upm = !git fetch origin && git rebase origin/master
+
+
+[color]
+branch = auto
+diff = auto
+interactive = auto
+status = auto
+[user]
+	name = Gaurav Parmar
+	email = gaurav.p.parmar@oracle.com
+#[http]
+#proxy = <hostname>:<port>
+#[https]
+#proxy = <hostname>:<port> 
+[core]
+	autocrlf = true
+	whitespace = cr-at-eol
+
+[diff]
+	tool = bc3
+[difftool]
+	bc3 = trustExitCode
+[merge]
+	tool = bc3
+[mergetool]
+	bc3 = trustExitCode
+	keepBackup = false
+[difftool "sourcetree"]
+	cmd = /usr/local/bin/bcomp \"$LOCAL\" \"$REMOTE\"
+	path = -ro
+[mergetool "sourcetree"]
+	cmd = /usr/local/bin/bcomp \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = true

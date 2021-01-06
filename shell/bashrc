@@ -1,19 +1,12 @@
 ################### For MAC  ############################
 
 alias ant6='ant -Dant.build.javac.target=1.6 -Dant.build.javac.source=1.6 clean package'
-alias copy='function _copy(){ scp $1 gaparmar@slc15dvo.us.oracle.com:/scratch/gaparmar/copiedFiles; };_copy'
+alias copy='function _copy(){ scp $1 gaparmar@<hostname>:<folder location>; };_copy'
 
 export PATH=$PATH:/opt/gradle/gradle-5.1.1/bin
 
 # JAVA HOMES : /Library/Java/JavaVirtualMachines/
 
-################### For ORACLE NETWORK (python)  ############################
-#export HTTP_PROXY=http://www-proxy-idc.in.oracle.com:80
-#export HTTPS_PROXY=http://www-proxy-idc.in.oracle.com:80
-#export no_proxy=localhost,127.0.0.1,.us.oracle.com,.oraclecorp.com
-
-# For BREW
-#export ALL_PROXY=http://www-proxy-idc.in.oracle.com:80
 
 ######## GREP and HISTORY
 export GREP_OPTIONS="--color=auto"

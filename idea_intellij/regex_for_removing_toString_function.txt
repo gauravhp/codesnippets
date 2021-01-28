@@ -1,0 +1,1 @@
+^\s*@Override\s*public String toString\(\)\s*\{\n(.*?\n)+
